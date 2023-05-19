@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce/blocs/cart/cart_bloc.dart';
-import 'package:flutter_ecommerce/models/cart_model.dart';
-import 'package:flutter_ecommerce/models/models.dart';
 import 'package:flutter_ecommerce/widgets/widgets.dart';
 
 class CartScreen extends StatelessWidget {
@@ -86,10 +84,21 @@ class CartScreen extends StatelessWidget {
                       SizedBox(
                         height: 400,
                         child: ListView.builder(
-                          itemCount: state.cart.product.length,
+                          itemCount: state.cart
+                              .productQuantity(state.cart.product)
+                              .keys
+                              .length,
                           itemBuilder: (context, index) {
                             return CartProductCard(
-                                product: state.cart.product[index]);
+                              product: state.cart
+                                  .productQuantity(state.cart.product)
+                                  .keys
+                                  .elementAt(index),
+                              quantity: state.cart
+                                  .productQuantity(state.cart.product)
+                                  .values
+                                  .elementAt(index),
+                            );
                           },
                         ),
                       ),

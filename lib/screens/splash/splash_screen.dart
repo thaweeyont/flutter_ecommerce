@@ -20,18 +20,18 @@ class SplashScreen extends StatelessWidget {
         children: [
           const Center(
             child: Image(
-              image: AssetImage('images/unicorn.png'),
-              width: 125,
-              height: 125,
+              image: AssetImage('images/wolf.png'),
+              width: 150,
+              height: 150,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           Container(
             color: Colors.black,
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: Text(
-              'Zero To Unicorn',
+              'Zero To Wolf',
               style: Theme.of(context)
                   .textTheme
                   .displayMedium!

@@ -5,9 +5,11 @@ import 'package:flutter_ecommerce/models/product_model.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
+  final int quantity;
   const CartProductCard({
     super.key,
     required this.product,
+    required this.quantity,
   });
 
   @override
@@ -41,24 +43,31 @@ class CartProductCard extends StatelessWidget {
           const SizedBox(width: 10),
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              return Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        context.read<CartBloc>().add(RemoveProduct(product));
-                      },
-                      icon: const Icon(Icons.remove_circle)),
-                  Text(
-                    '1',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        context.read<CartBloc>().add(AddProduct(product));
-                      },
-                      icon: const Icon(Icons.add_circle)),
-                ],
-              );
+              if (state is CartLoading) {
+                return const CircularProgressIndicator();
+              }
+              if (state is CartLoaded) {
+                return Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          context.read<CartBloc>().add(RemoveProduct(product));
+                        },
+                        icon: const Icon(Icons.remove_circle)),
+                    Text(
+                      '$quantity',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          context.read<CartBloc>().add(AddProduct(product));
+                        },
+                        icon: const Icon(Icons.add_circle)),
+                  ],
+                );
+              } else {
+                return const Text('Something went wrong ');
+              }
             },
           ),
         ],

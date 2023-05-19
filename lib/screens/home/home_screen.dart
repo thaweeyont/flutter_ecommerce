@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Zero To Unicorn'),
+      appBar: const CustomAppBar(title: 'Zero To Wolf'),
       bottomNavigationBar: const CustomNavBar(),
       body: Column(
         children: [

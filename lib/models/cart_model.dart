@@ -3,9 +3,21 @@ import 'package:flutter_ecommerce/models/product_model.dart';
 
 class Cart extends Equatable {
   final List<Product> product;
-  const Cart({
-    this.product = const <Product>[],
-  });
+  const Cart({this.product = const <Product>[]});
+
+  Map productQuantity(product) {
+    var quantity = Map();
+
+    product.forEach((product) {
+      if (!quantity.containsKey(product)) {
+        quantity[product] = 1;
+      } else {
+        quantity[product] += 1;
+      }
+    });
+
+    return quantity;
+  }
 
   double get subtotal =>
       product.fold(0, (total, current) => total + current.price);
