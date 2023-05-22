@@ -6,7 +6,7 @@ import 'package:flutter_ecommerce/widgets/widgets.dart';
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/';
 
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   static Route route() {
     return MaterialPageRoute(
