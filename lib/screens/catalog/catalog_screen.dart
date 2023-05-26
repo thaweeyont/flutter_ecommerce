@@ -22,11 +22,13 @@ class CatalogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Product> categoryProduct = Product.product
-        .where((product) => product.categoey == category.name)
+        .where((product) => product.category == category.name)
         .toList();
     return Scaffold(
       appBar: CustomAppBar(title: category.name),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: const CustomNavBar(
+        screen: routeName,
+      ),
       body: GridView.builder(
           padding: const EdgeInsets.symmetric(
             horizontal: 8.0,

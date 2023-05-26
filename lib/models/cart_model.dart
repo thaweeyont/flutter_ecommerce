@@ -22,7 +22,7 @@ class Cart extends Equatable {
   double get subtotal =>
       product.fold(0, (total, current) => total + current.price);
 
-  double deliveryFree(subtotal) {
+  double deliveryFee(subtotal) {
     if (subtotal >= 30.0) {
       return 0.0;
     } else {
@@ -39,15 +39,15 @@ class Cart extends Equatable {
     }
   }
 
-  double total(subtotal, deliveryFree) {
-    return subtotal + deliveryFree(subtotal);
+  double total(subtotal, deliveryFee) {
+    return subtotal + deliveryFee(subtotal);
   }
 
   String get subtotalString => subtotal.toStringAsFixed(2);
 
-  String get totalString => total(subtotal, deliveryFree).toStringAsFixed(2);
+  String get totalString => total(subtotal, deliveryFee).toStringAsFixed(2);
 
-  String get deliveryFreeString => deliveryFree(subtotal).toStringAsFixed(2);
+  String get deliveryFeeString => deliveryFee(subtotal).toStringAsFixed(2);
 
   String get freeDeliveryString => freeDelivery(subtotal);
 

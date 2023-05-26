@@ -27,52 +27,8 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: product.name),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: SizedBox(
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.share, color: Colors.white),
-              ),
-              BlocBuilder<WishlistBloc, WishlistState>(
-                builder: (context, state) {
-                  return IconButton(
-                    onPressed: () {
-                      context
-                          .read<WishlistBloc>()
-                          .add(AddProductToWishlist(product));
-
-                      final snackBar =
-                          SnackBar(content: Text('Added to your Wishlist!'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    },
-                    icon: const Icon(Icons.favorite, color: Colors.white),
-                  );
-                },
-              ),
-              BlocBuilder<CartBloc, CartState>(
-                builder: (context, state) {
-                  return ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {
-                      context.read<CartBloc>().add(AddProduct(product));
-                      Navigator.pushNamed(context, '/cart');
-                    },
-                    child: Text(
-                      'ADD TO CART',
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
-        ),
+      bottomNavigationBar: const CustomNavBar(
+        screen: routeName,
       ),
       body: ListView(
         children: [
